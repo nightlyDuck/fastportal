@@ -1,0 +1,5 @@
+name: FastPortal
+version: 0.0.2-dev
+description: A plugin that allows disabling the warm-up delay when teleporting to the Nether.
+main: unnamed_p.fastportal.FastPortalPlugin
+api-version: 1.21
