@@ -1,0 +1,9 @@
+settings:
+    enable-file-cache: false
+
+messages:
+    enabled: "fast portal enabled"
+    disabled: "fast portal disabled"
+    only-as-player: "only as player"
+    only-for-survival: "only for survival"
+    reloaded: "config reloaded!"

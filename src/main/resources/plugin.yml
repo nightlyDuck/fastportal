@@ -1,0 +1,5 @@
+name: FastPortal
+version: ${pluginVersion}
+description: ${pluginDescription}
+main: unnamed_p.fastportal.FastPortalPlugin
+api-version: 1.21
