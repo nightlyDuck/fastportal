@@ -1,0 +1,50 @@
+plugins {
+    id 'java-library' apply true
+    id 'com.gradleup.shadow' version '9.4.1' apply true
+}
+
+group = 'unnamed_p.fastportal'
+description = 'A plugin that allows disabling the warm-up delay when teleporting to the Nether.'
+version = '0.0.2-dev'
+
+dependencies {
+    compileOnly 'io.papermc.paper:paper-api:1.21.11-R0.1-SNAPSHOT'
+    compileOnly files('libs/leaf-1.21.11.jar')
+
+    implementation 'org.spongepowered:configurate-yaml:4.2.0'
+    implementation 'org.spongepowered:configurate-core:4.2.0'
+}
+
+shadowJar {
+    archiveFileName = 'fastportal-' + project.version + '.jar'
+
+    relocate 'org.spongepowered', 'unnamed_p.libs.org.spongepowered'
+    relocate 'io.leangen', 'unnamed_p.libs.io.leangen'
+    relocate 'net.kyori.option', 'unnamed_p.libs.net.kyori.option'
+}
+
+processResources {
+    def pluginVersion = project.version
+    def pluginDescription = project.description
+
+    inputs.property("pluginVersion", pluginVersion)
+    inputs.property("pluginDescription", pluginDescription)
+
+    filesMatching('plugin.yml') {
+        expand(
+                'pluginVersion': pluginVersion,
+                'pluginDescription': pluginDescription
+        )
+    }
+}
+
+repositories {
+    mavenCentral()
+
+    repositories {
+        maven {
+            name = 'papermc'
+            url = 'https://repo.papermc.io/repository/maven-public/'
+        }
+    }
+}
